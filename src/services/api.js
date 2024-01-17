@@ -30,7 +30,6 @@ export const fetchMoviesById = async id => {
       api_key: API_KEY,
     },
   });
-
-  console.log(res);
+  
   return res.data;
 };

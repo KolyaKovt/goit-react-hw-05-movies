@@ -1,25 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import { fetchMoviesByQuery } from "../../services/api";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import FoundMoviesList from "../../components/FoundMoviesList/FoundMoviesList";
 
 const Movies = () => {
   const [hits, setHits] = useState([]);
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const query = searchParams.get("query");
+
+  useEffect(() => {
+    fetchMoviesByQuery(query).then(setHits);
+  }, [query, searchParams]);
 
   const onSubmit = e => {
     e.preventDefault();
-    const q = e.target.elements.q.value;
+    const form = e.target;
+    const query = form.elements.query.value;
 
-    fetchMoviesByQuery(q).then(setHits);
-    navigate(`?query=${q}`);
+    setSearchParams({
+      query,
+    });
+
+    form.reset();
   };
 
   return (
     <>
       <SearchForm onSubmit={onSubmit} />
-      {hits.length !== 0 && <FoundMoviesList hits={hits} />}
+      {hits.length !== 0 && <FoundMoviesList hits={hits} query={query} />}
     </>
   );
 };
