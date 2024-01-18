@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMoviesById } from "../../services/api";
 import { useData } from "../../hooks/useData";
-import { Suspense, useRef } from "react";
+import { useRef } from "react";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -9,6 +9,10 @@ const Movie = () => {
   const location = useLocation();
 
   const backUrl = useRef(location.state?.from || "/movies");
+
+  if (error) {
+    return <h1>Error: {error}</h1>;
+  }
 
   if (!movieData) {
     return <h1>loading</h1>;
@@ -57,9 +61,7 @@ const Movie = () => {
           </li>
         </ul>
       </div>
-      <Suspense fallback={<h1>Loading</h1>}>
-        <Outlet />
-      </Suspense>
+      <Outlet />
     </>
   );
 };
