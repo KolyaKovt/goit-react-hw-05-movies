@@ -1,7 +1,7 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMoviesById } from "../../services/api";
 import { useData } from "../../hooks/useData";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -57,7 +57,9 @@ const Movie = () => {
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<h1>Loading</h1>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
