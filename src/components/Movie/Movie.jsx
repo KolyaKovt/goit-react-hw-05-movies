@@ -8,7 +8,7 @@ const Movie = () => {
   const [movieData, setMovieData, error] = useData(fetchMoviesById, movieId);
   const location = useLocation();
 
-  const backUrl = useRef(location.state.from || "/movies");
+  const backUrl = useRef(location.state?.from || "/movies");
 
   if (!movieData) {
     return <h1>loading</h1>;
