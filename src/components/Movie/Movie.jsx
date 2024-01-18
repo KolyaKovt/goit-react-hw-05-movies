@@ -1,11 +1,14 @@
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMoviesById } from "../../services/api";
 import { useData } from "../../hooks/useData";
+import { useRef } from "react";
 
 const Movie = () => {
   const { movieId } = useParams();
   const [movieData, setMovieData, error] = useData(fetchMoviesById, movieId);
   const location = useLocation();
+
+  const backUrl = useRef(location.state.from || "/movies");
 
   if (!movieData) {
     return <h1>loading</h1>;
@@ -32,7 +35,7 @@ const Movie = () => {
   return (
     <>
       <div>
-        <Link to={location.state.from}>Go back</Link>
+        <Link to={backUrl.current}>Go back</Link>
         <img src={img || defaultImg} width={250} alt="poster" />
         <h1>
           {title} ({releaseYear})
@@ -47,10 +50,10 @@ const Movie = () => {
         <p>Additional information</p>
         <ul>
           <li>
-            <Link to={"cast"} state={location.state}>Cast</Link>
+            <Link to={"cast"}>Cast</Link>
           </li>
           <li>
-            <Link to={"reviews"} state={location.state}>Reviews</Link>
+            <Link to={"reviews"}>Reviews</Link>
           </li>
         </ul>
       </div>

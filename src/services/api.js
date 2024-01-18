@@ -30,6 +30,17 @@ export const fetchMoviesById = async id => {
       api_key: API_KEY,
     },
   });
-  
+
+  return res.data;
+};
+
+export const fetchReviewById = async id => {
+  const res = await axios.get(`/movie/${id}/reviews`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  console.log(res);
   return res.data;
 };

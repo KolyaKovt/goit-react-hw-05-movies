@@ -1,9 +1,10 @@
 import { fetchTrending } from "../../services/api";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useData } from "../../hooks/useData";
 
 const Home = () => {
   const [movies, setMovies, error] = useData(fetchTrending);
+  const location = useLocation();
 
   if (error) {
     return <h1>{error}</h1>;
@@ -19,7 +20,7 @@ const Home = () => {
       <ul>
         {movies.map(movie => (
           <li key={movie.id}>
-            <Link to={"movies/" + movie.id.toString()} state={{ from: "/" }}>
+            <Link to={"movies/" + movie.id.toString()} state={{ from: location }}>
               {movie.title}
             </Link>
           </li>
