@@ -40,7 +40,16 @@ export const fetchReviewById = async id => {
       api_key: API_KEY,
     },
   });
+  
+  return res.data.results;
+};
 
-  console.log(res);
-  return res.data;
+export const fetchCastById = async id => {
+  const res = await axios.get(`/movie/${id}/credits`, {
+    params: {
+      api_key: API_KEY,
+    },
+  });
+
+  return res.data.cast;
 };

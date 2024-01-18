@@ -36,9 +36,9 @@ const Movie = () => {
     <>
       <div>
         <Link to={backUrl.current}>Go back</Link>
-        <img src={img || defaultImg} width={250} alt="poster" />
+        <img src={poster_path ? img : defaultImg} width={250} alt="poster" />
         <h1>
-          {title} ({releaseYear})
+          {title} {releaseYear ? `(${releaseYear})` : ""}
         </h1>
         <p>User score: {userScore}</p>
         <h2>Overview</h2>
