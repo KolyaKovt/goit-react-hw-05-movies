@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { fetchMoviesById } from "../../services/api";
 import { useData } from "../../hooks/useData";
 import { Suspense, useRef } from "react";
+import { StyledBackLink, StyledContainer } from "./Movie.styled";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -38,8 +39,8 @@ const Movie = () => {
 
   return (
     <>
-      <div>
-        <Link to={backUrl.current}>Go back</Link>
+      <StyledContainer>
+        <StyledBackLink to={backUrl.current}>Go back</StyledBackLink>
         <img src={poster_path ? img : defaultImg} width={250} alt="poster" />
         <h1>
           {title} {releaseYear ? `(${releaseYear})` : ""}
@@ -49,8 +50,8 @@ const Movie = () => {
         <p>{overview}</p>
         <h3>Genres</h3>
         <p>{genresArray.join(" ")}</p>
-      </div>
-      <div>
+      </StyledContainer>
+      <StyledContainer>
         <p>Additional information</p>
         <ul>
           <li>
@@ -60,7 +61,7 @@ const Movie = () => {
             <Link to={"reviews"}>Reviews</Link>
           </li>
         </ul>
-      </div>
+      </StyledContainer>
       <Suspense fallback={<h1>Loading ....</h1>}>
         <Outlet />
       </Suspense>
