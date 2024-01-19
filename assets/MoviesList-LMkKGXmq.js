@@ -1,0 +1,1 @@
+import{a as e,j as o,L as n}from"./index-iGK-14H6.js";const a=({hits:i})=>{const t=e();return o.jsx("ul",{children:i.map(s=>o.jsx("li",{children:o.jsx(n,{to:`/movies/${s.id}`,state:{from:t},children:s.title})},s.id))})};export{a as M};

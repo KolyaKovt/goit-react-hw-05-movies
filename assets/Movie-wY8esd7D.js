@@ -1,4 +1,4 @@
-import{b as l,L as s,c as y,a as L,r as a,j as e,O as D}from"./index-jPevskDU.js";import{b as M}from"./api-PmAuHjP4.js";import{u as S}from"./useData-tyoI0dkt.js";const A=l(s)`
+import{b as l,L as s,c as y,a as L,r as a,j as e,O as D}from"./index-iGK-14H6.js";import{b as M}from"./api-PmAuHjP4.js";import{u as S}from"./useData-y1mKSkBV.js";const A=l(s)`
   display: block;
 `,c=l.div`
   padding-bottom: 10px;

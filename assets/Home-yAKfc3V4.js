@@ -1,0 +1,1 @@
+import{j as r}from"./index-iGK-14H6.js";import{f as i}from"./api-PmAuHjP4.js";import{u as o}from"./useData-y1mKSkBV.js";import{M as t}from"./MoviesList-LMkKGXmq.js";const h=()=>{const[s,n,e]=o(i);return e?r.jsx("h1",{children:e}):s?r.jsxs("div",{children:[r.jsx("h1",{children:"Trending today"}),r.jsx(t,{hits:s})]}):r.jsx("h1",{children:"loading"})};export{h as default};
