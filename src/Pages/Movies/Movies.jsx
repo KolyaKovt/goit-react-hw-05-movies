@@ -9,23 +9,24 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const urlQuery = searchParams.get("query");
-  
-  const [query, setQuery] = useState("");
 
   useEffect(() => {
+    if (!urlQuery) {
+      setHits([]);
+      return;
+    }
+
     fetchMoviesByQuery(urlQuery).then(setHits);
+    console.log(urlQuery);
   }, [urlQuery]);
 
-  const onSubmit = e => {
-    e.preventDefault();
-
-    const queryTrimmed = query.trim();
-    setSearchParams(queryTrimmed ? { query: queryTrimmed } : {});
+  const onSubmit = query => {
+    setSearchParams(query ? { query } : {});
   };
 
   return (
     <>
-      <Form onSubmit={onSubmit} query={query} setQuery={setQuery} />
+      <Form onSubmit={onSubmit} />
       <MoviesList hits={hits} />
     </>
   );

@@ -1,6 +1,17 @@
-const Form = ({ onSubmit, query, setQuery }) => {
+import { useState } from "react";
+
+const Form = ({ onSubmit }) => {
+  const [query, setQuery] = useState("");
+
+  const beforeSubmit = e => {
+    e.preventDefault();
+
+    const queryTrimmed = query.trim();
+    onSubmit(queryTrimmed);
+  };
+
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={beforeSubmit}>
       <input
         value={query}
         type="text"
